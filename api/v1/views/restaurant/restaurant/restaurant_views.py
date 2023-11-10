@@ -66,42 +66,7 @@ def login_restaurant():
             return response
 
 
-# @app_views.route('/profile', methods=['GET'])
-# @jwt_required()
-# def get_restaurant():
-#     """
-#     Get a restaurant
-#     """
-#     restaurant_id = restaurant_authenticator.get_authenticated_restaurant()
-#     restaurant = restaurant_auth.get_restaurant_by_id(restaurant_id)
-#     if not restaurant:
-#         return jsonify({"message": "restaurant not found"}), 404
-#     restaurant_data = {
-#         "email": restaurant.email,
-#         "first_name": restaurant.first_name,
-#         "last_name": restaurant.last_name,
-#         "phone_number": restaurant.phone_number,
-#         "location": restaurant.location,
-#         "role": restaurant.role,
-#         "is_active": restaurant.is_active,
-#         "last_login": restaurant.last_login
-
-#     }
-#     return jsonify(restaurant_data), 200
-
-
-# @app_views.route('/logout', methods=['POST'])
-# def logout():
-#     auth_header = request.headers.get('Authorization')
-
-#     if auth_header and auth_header.startswith('Bearer '):
-#         access_token = auth_header.split(' ')[1]
-
-#         identity = restaurant_authenticator.get_authenticated_restaurant()
-#         if identity and access_token:
-#             response = jsonify({'message': 'Logged out successfully', 'status': 200})
-#             restaurant_authenticator.unset_cookie(response, access_token)
-
-#             return jsonify({'message': 'Logged out successfully'}), 200
-#         else:
-#             return jsonify({'message': 'No access token found'}), 400
+#create an endpoint for adding pizza
+@jwt_required()
+@app_views.route('/pizza', methods=['POST'])
+   
