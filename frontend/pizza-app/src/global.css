@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+body {
+  margin: 0;
+  line-height: normal;
+}
+@import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-istok-web: "Istok Web";
+
+  /* font sizes */
+  --font-size-17xl: 2.25rem;
+  --font-size-5xl: 1.5rem;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-black: #000;
+}

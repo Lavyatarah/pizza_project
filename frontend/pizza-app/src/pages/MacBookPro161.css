@@ -1,0 +1,68 @@
+.app-name,
+.login,
+.register {
+  position: relative;
+}
+.login,
+.register {
+  display: inline-block;
+  width: 3.81rem;
+  flex-shrink: 0;
+}
+.register {
+  text-align: center;
+  width: 5.74rem;
+  
+}
+.header,
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4.38rem;
+  text-align: right;
+  font-size: var(--font-size-5xl);
+}
+.header {
+  align-self: stretch;
+  background-color: var(--color-black);
+  padding: 0 2.31rem;
+  gap: 40.5rem;
+  text-align: left;
+  font-size: var(--font-size-17xl);
+  color: var(--color-white);
+  font-family: var(--font-istok-web);
+}
+.register-restaurants {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 21.94rem;
+  height: 4.38rem;
+  flex-shrink: 0;
+}
+.inputstandard {
+  width: 17.31rem;
+  border: 0;
+  background-color: transparent;
+}
+.macbook-pro-16-1 {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2.5rem;
+  text-align: left;
+  font-size: var(--font-size-17xl);
+  color: var(--color-black);
+  font-family: var(--font-istok-web);
+}
+.field {
+margin-top: 1.5rem;
+}
