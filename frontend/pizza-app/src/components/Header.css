@@ -1,0 +1,101 @@
+/* .app-nameH,
+.loginH,
+.registerH {
+  position: relative;
+}
+a {
+    text-decoration: none;
+    color: var(--color-white);
+}
+.loginH,
+.registerH {
+  display: inline-block;
+  width: 1.81rem;
+  flex-shrink: 0;
+}
+.registerH {
+  text-align: center;
+  width: 5.74rem;
+  
+}
+.linksH {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4.38rem;
+  text-align: right;
+  font-size: var(--font-size-5xl);
+}
+.headerH {
+  align-self: stretch;
+  background-color: var(--color-black);
+  padding: 0 2.31rem;
+  gap: 40.5rem;
+  text-align: left;
+  font-size: var(--font-size-17xl);
+  color: var(--color-white);
+  font-family: var(--font-istok-web);
+}
+.loginH {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2.5rem;
+  text-align: left;
+  font-size: var(--font-size-5xl);
+  color: var(--color-white);
+  font-family: var(--font-istok-web);
+} */
+
+
+.app-nameH {
+  position: relative;
+  font-family: var(--font-istok-web);
+  color: var(--color-white);
+  font-size: var(--font-size-17xl);
+  display: flex;
+    flex-direction: column;
+  text-align: left;
+  width: 50%;
+}
+a {
+    text-decoration: none;
+    color: var(--color-white);
+}
+
+.linksH {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4.38rem;
+  text-align: right;
+  width: 100%;
+  font-size: var(--font-size-5xl);
+}
+
+.headerH {
+  align-self: stretch;
+  background-color: var(--color-black);
+  padding: 0 2.31rem;
+  gap: 40.5rem;
+  display : flex;
+  flex-direction: row;
+}
+.loginH, .registerH {
+  position: relative;
+  display: inline-block;
+  width: 1.81rem; /* Assuming width differs for login and register */
+  flex-shrink: 0;
+  text-align: center; /* Overrides width for registerH */
+  font-size: var(--font-size-5xl);
+  color: var(--color-white);
+  font-family: var(--font-istok-web);
+}

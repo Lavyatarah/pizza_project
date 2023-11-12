@@ -6,6 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import MacBookPro161 from "./pages/MacBookPro161";
+import Login from "./pages/Login";
 
 function App() {
   const action = useNavigationType();
@@ -46,6 +47,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<MacBookPro161 />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 }

@@ -1,39 +1,3 @@
-.app-name,
-.login,
-.register {
-  position: relative;
-}
-.login,
-.register {
-  display: inline-block;
-  width: 3.81rem;
-  flex-shrink: 0;
-}
-.register {
-  text-align: center;
-  width: 5.74rem;
-  
-}
-.header,
-.links {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 4.38rem;
-  text-align: right;
-  font-size: var(--font-size-5xl);
-}
-.header {
-  align-self: stretch;
-  background-color: var(--color-black);
-  padding: 0 2.31rem;
-  gap: 40.5rem;
-  text-align: left;
-  font-size: var(--font-size-17xl);
-  color: var(--color-white);
-  font-family: var(--font-istok-web);
-}
 .register-restaurants {
   position: relative;
   display: flex;

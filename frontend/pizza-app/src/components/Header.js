@@ -1,16 +1,14 @@
-
+import  '../components/Header.css';
 
 function Header() {
     return (
-      <>
-      <header className="header" id="header">
-        <div className="app-name">App Name</div>
-        <div className="links">
-          <div className="login">Login</div>
-          <div className="register">Register</div>
-        </div>
-      </header>
-            </>
+    <header className="headerH" id="headerH">
+      <div className="app-nameH">App Name</div>
+      <div className="linksH">
+        <a className="loginH" href="#">Login</a>
+        <a className="registerH" href='#'>Register</a>
+      </div>
+    </header>
   )
 }
 

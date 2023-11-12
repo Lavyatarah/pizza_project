@@ -42,7 +42,7 @@ const MacBookPro161 = () => {
   return (
     <div className="macbook-pro-16-1">
         <Header />
-      <div className="register-restaurants">Register Restaurants</div>
+      <div className="register-restaurants">Register Restaurant</div>
       <Form  className="inputstandard" onSubmit={handleSubmit}>
               <Form.Control type="text" placeholder="Restaurant's name" name="name" className="field" required onChange={handleChange} />
         

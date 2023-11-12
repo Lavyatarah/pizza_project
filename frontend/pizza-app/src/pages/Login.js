@@ -2,96 +2,51 @@ import React from 'react';
 import Header from '../components/Header';
 import { useState } from "react";
 import { postEndpoint } from '../auth';
-
-import {
-  Button,
-  TextField,
-  InputAdornment,
-  Icon,
-  IconButton,
-} from "@mui/material";
+import { Button, Form } from 'react-bootstrap';
 import "./Login.css";
 
 
+
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [fields, setFields] = useState({email: "", password: ""});
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    try {
-      const res = await postEndpoint("auth/login", { email, password });
-      console.log(res);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    const handleChange = (e) => {
+        setFields({ ...fields, [e.target.name]: e.target.value });
+        console.log(fields);
   };
+    
+    const handleSubmit = async (e) => {
 
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            const res = await postEndpoint("login", { fields });
+            console.log(res);
+            setFields({email: "", password: ""});
+        } catch (err) {
+            setError(err.message);
+            console.log(err);
+        } finally {
+            setLoading(false);
+        }
+    };
   return (
-    <>
-      <Header />
-
-      <div className="login">
-        <form onSubmit={handleSubmit}>
-          <TextField
-            className="inputfilled2"
-            color="primary"
-            label="Email"
-            size="medium"
-            placeholder="eg: hi@restaurant.com"
-            required={true}
-            sx={{ width: 220 }}
-            variant="filled"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <TextField
-            className="inputfilled4"
-            color="primary"
-            label="Password"
-            size="medium"
-            required={true}
-            sx={{ width: 220 }}
-            variant="filled"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={handleShowPasswordClick}
-                    aria-label="toggle password visibility"
-                  >
-                    <Icon>{showPassword ? "visibility_off" : "visibility"}</Icon>
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-
-          <Button
-            className="buttoncontained-text"
-            color="primary"
-            size="medium"
-            variant="contained"
-            type="submit"
-            disabled={loading}
-          >
-            Login
-          </Button>
-        </form>
-      </div>
-    </>
-  );
+    <div className="login">
+        <Header />
+      <div className="login-restaurants">Login to Restaurant</div>
+      <Form  className="inputstandard" onSubmit={handleSubmit}>
+        <Form.Control type="email" placeholder="email" name="email" className="field" required  onChange={handleChange} />
+        <Form.Control type="password" placeholder="password" name="password"  className="field" required onChange={handleChange} />
+      <Button variant="dark" size="lg" type="submit"  className="field">
+        Login
+              </Button>
+        </Form>
+    </div>
+  )
 }
 
 export default Login;
