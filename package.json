@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@mui/material": "^5.14.17",
+    "tailwindcss": "^3.3.5"
+  }
+}
