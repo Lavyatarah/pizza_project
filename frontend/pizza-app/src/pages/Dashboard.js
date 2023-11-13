@@ -4,15 +4,16 @@ import "./Dashboard.css";
 import Header from "../components/Header";
 
 const Dashboard = () => {
+  const restaurantName = localStorage.getItem("user");
   return (
     <div className="Dashboard">
       <Header />
       <div className="dashboard">Dashboard</div>
       <div className="restaurants-name-parent">
-        <b className="restaurants-name">{`Restaurant’s name >`}</b>
+        <b className="restaurants-name">{`${restaurantName} >`}</b>
         <b className="my-pizzas">My Pizzas</b>
       </div>
-      <Button variant="outline-dark" size="lg">
+      <Button variant="outline-dark" size="lg" href="/create_pizza">
         create pizza item
       </Button>
       <div className="rectangle-parent">

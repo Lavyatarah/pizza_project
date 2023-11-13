@@ -9,6 +9,7 @@ import MacBookPro161 from "./pages/MacBookPro161";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/404";
+import CreatePizza from "./pages/create_pizza";
 
 function App() {
   const action = useNavigationType();
@@ -52,6 +53,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<MacBookPro161 />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/create_pizza" element={<CreatePizza />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

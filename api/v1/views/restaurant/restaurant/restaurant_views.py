@@ -136,3 +136,5 @@ def get_all_pizzas():
         pizzas_list.append(pizza.to_dict())
 
     return jsonify({"pizzas": pizzas_list}), 200
+
+# @jwt_required

@@ -19,12 +19,15 @@ function Header() {
     
   }
 
+  const isLoggedIn = localStorage.getItem('jwtToken') !== null;
+  const isUser = localStorage.getItem("user") !== null;
   return (
     <header className="headerH" id="headerH">
-      <div className="app-nameH">App Name</div>
+      {isLoggedIn && isUser ? (<Link className="app-nameH" to="/dashboard">App Name</Link>):(<Link className="app-nameH" to="/">App Name</Link>)}
+      
       <div className="linksH">
         {user ? (
-          <Link className='logoutH' to="/" onClick={handleLogout}>Logout</Link>
+          <Link className='logoutH' to="/login" onClick={handleLogout}>Logout</Link>
         ) : (
           <>
             <Link className="loginH" to="/login">Login</Link>
