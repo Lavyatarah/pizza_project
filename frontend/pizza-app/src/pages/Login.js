@@ -29,7 +29,7 @@ function Login() {
             const res = await postEndpoint("login", { fields });
           console.log(res);
           localStorage.setItem("user", res.restaurantName);
-          localStorage.setItem("token", res.token);
+          localStorage.setItem("jwtToken", res.jwtToken);
             setFields({email: "", password: ""});
         } catch (err) {
             setError(err.message);
