@@ -104,7 +104,7 @@ def create_pizza():
 
     restaurant = restaurant_authenticator.get_authenticated_restaurant()
     if not restaurant:
-        return jsonify({"message": "Not logged in!"}), 400
+        return jsonify({"message": "Not logged in!", "restaurant": restaurant}), 400
 
     pizzas = GetRelationships.get_pizzas_from_restaurant(restaurant.id)
     for pizza in pizzas:
