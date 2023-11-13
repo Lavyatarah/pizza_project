@@ -14,3 +14,13 @@ class Pizzas(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """Initialize the account"""
         super().__init__(*args, **kwargs)
+
+    def to_dict(self):
+        """Return a dictionary representation of the account"""
+        return {
+            'id': self.id,
+            'restaurant_id': self.restaurant_id,
+            'name': self.name,
+            'price': self.price,
+            'image': self.image
+        }

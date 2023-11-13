@@ -7,14 +7,13 @@ from datetime import timedelta
 from flask import Flask, jsonify, make_response, request
 import os
 
-# from flask_cors import CORS
 
 from db import storage
 from werkzeug.exceptions import HTTPException
 from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
 from auth.auth import Authentication
-from api.v1.views.restaurant import app_views
+from api.v1.views.restaurant.restaurant import app_views
 from db.storage import DB
 
 db = DB()
@@ -35,7 +34,7 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 jwt = JWTManager(app)
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=30)
-app.config['JWT_COOKIE_SECURE'] = True
+app.config['JWT_COOKIE_SECURE'] = False
 app.config['JWT_COOKIE_CSRF_PROTECT'] = True
 app.config['JWT_COOKIE_SAMESITE'] = "None"
 
@@ -71,9 +70,6 @@ def home():
 def health():
     return jsonify({"Message": "Healthy!"}), 200
 
-# @jwt.expired_token_loader
-# def handle_expired_token_callback():
-#     return redirect('/api/v1/views/login')
 
 
 @app.before_request
@@ -133,7 +129,7 @@ def add_cors_headers(response):
     # frontend_url = "http://localhost:5173"
     response.headers.extend({
         'X-Content-Type-Options': 'no-sniff',
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
         'Access-Control-Allow-Credentials': 'true',
         'Access-Control-Allow-Headers': 'Content-Type, Cache-Control, X-Requested-With, Authorization',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, DELETE'

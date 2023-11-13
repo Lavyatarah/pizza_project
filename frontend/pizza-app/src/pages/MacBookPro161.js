@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button } from "react-bootstrap";
 import "./MacBookPro161.css";
 import Header from "../components/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { postEndpoint } from "../auth";
 
 const MacBookPro161 = () => {
@@ -10,11 +10,19 @@ const MacBookPro161 = () => {
 
 
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+           useEffect(() => {
+        const timer = setTimeout(() => {
+          setError("");
+        }, 3000);
+        return () => clearTimeout(timer);
+      }, [error]);
 
     const handleChange = (e) => {
         setFields({ ...fields, [e.target.name]: e.target.value });
-        console.log(fields);
+      console.log(fields);
+     
   };
     
     const handleSubmit = async (e) => {
@@ -28,14 +36,15 @@ const MacBookPro161 = () => {
         }
 
         try {
-            const res = await postEndpoint("register", { fields });
+          const res = await postEndpoint("register", { fields });
             console.log(res);
             setFields({name: "", email: "", phoneNumber: "", location: "", password: "", confirmPassword: ""});
         } catch (err) {
             setError(err.message);
             console.log(err);
         } finally {
-            setLoading(false);
+          setLoading(false);
+          setError("");
         }
     };
     
@@ -43,6 +52,7 @@ const MacBookPro161 = () => {
     <div className="macbook-pro-16-1">
         <Header />
       <div className="register-restaurants">Register Restaurant</div>
+      {error && <div className="alert alert-danger danger-small">{error}</div>}
       <Form  className="inputstandard" onSubmit={handleSubmit}>
               <Form.Control type="text" placeholder="Restaurant's name" name="name" className="field" required onChange={handleChange} />
         
@@ -59,7 +69,8 @@ const MacBookPro161 = () => {
         <Form.Control type="password" placeholder="confirm password" name="confirmPassword" className="field"  required onChange={handleChange} />
       <Button variant="dark" size="lg" type="submit"  className="field">
         Register
-              </Button>
+        </Button>
+        
         </Form>
     </div>
   );

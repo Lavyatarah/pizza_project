@@ -12,8 +12,19 @@ class Restaurants(BaseModel, Base):
     password = Column(String(255), nullable=False)
 
 
-    pizza = relationship('Restaurants', foreign_keys=[Pizzas.restaurant_id], back_populates='restaurant')
+    pizza = relationship('Pizzas', foreign_keys=[Pizzas.restaurant_id], back_populates='restaurant')
 
     def __init__(self, *args, **kwargs):
         """Initialize the restaurant"""
         super().__init__(*args, **kwargs)
+
+    def to_dict(self):
+        """Return a dictionary representation of the restaurant"""
+        return {
+            'id': self.id,
+            'email': self.email,
+            'name': self.name,
+            'phone_number': self.phone_number,
+            'location': self.location,
+            'password': self.password
+        }

@@ -1,6 +1,13 @@
 import axios from 'axios';
 const API_URL = 'http://localhost:5000/api/v1/views';
 
+const config = {
+    withCredentials: true,
+    headers: {
+        'Content-Type': 'application/json',
+    },
+
+};
 export const getAuthenticatedEndpoint = async (endpoint) => {
     try {
         const token = localStorage.getItem('jwtToken');
@@ -8,7 +15,7 @@ export const getAuthenticatedEndpoint = async (endpoint) => {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
-        });
+        }, config);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -19,11 +26,12 @@ export const getAuthenticatedEndpoint = async (endpoint) => {
 export const postAuthenticatedEndpoint = async (endpoint, data) => {
     try {
         const token = localStorage.getItem('jwtToken');
-        const response = await axios.post(`${API_URL}/${endpoint}`, data, {
+        const response = await axios.post(`${API_URL}/${endpoint}`, JSON.stringify(data), {
             headers: {
                 Authorization: `Bearer ${token}`,
+
             },
-        });
+        }, config);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -34,11 +42,13 @@ export const postAuthenticatedEndpoint = async (endpoint, data) => {
 export const putAuthenticatedEndpoint = async (endpoint, data) => {
     try {
         const token = localStorage.getItem('jwtToken');
-        const response = await axios.put(`${API_URL}/${endpoint}`, data, {
+        const response = await axios.put(`${API_URL}/${endpoint}`, JSON.stringify(data), {
             headers: {
                 Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+
             },
-        });
+        }, config);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -52,8 +62,9 @@ export const deleteAuthenticatedEndpoint = async (endpoint) => {
         const response = await axios.delete(`${API_URL}/${endpoint}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
+
             },
-        });
+        }, config);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -63,7 +74,11 @@ export const deleteAuthenticatedEndpoint = async (endpoint) => {
 // function to make unauthenticated GET request
 export const getEndpoint = async (endpoint) => {
     try {
-        const response = await axios.get(`${API_URL}/${endpoint}`);
+        const response = await axios.get(`${API_URL}/${endpoint}`, {
+              headers: {
+        'Content-Type': 'application/json',
+    },
+        } ,config);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -73,7 +88,13 @@ export const getEndpoint = async (endpoint) => {
 // function to make unauthenticated POST request
 export const postEndpoint = async (endpoint, data) => {
     try {
-        const response = await axios.post(`${API_URL}/${endpoint}`, data);
+        const response = await axios.post(`${API_URL}/${endpoint}`, JSON.stringify(data), {
+              headers: {
+        'Content-Type': 'application/json',
+    },
+        }, config);
+        localStorage.setItem('jwtToken', response.jwtToken);
+        
         return response.data;
     } catch (error) {
         console.error(error);

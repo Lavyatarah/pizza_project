@@ -1,5 +1,7 @@
 from sqlalchemy.orm import sessionmaker
 from models.basemodel import Base
+from models.restaurants import Restaurants
+from models.pizzas import Pizzas
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
@@ -23,14 +25,18 @@ class DB:
         Constructor
         """
 
-        user = getenv('DBUSER')
-        password = getenv('PWD')
-        host = getenv('HOST')
-        db_name = getenv('DB')
+        # user = getenv('DBUSER')
+        # password = getenv('PWD')
+        # host = getenv('HOST')
+        # db_name = getenv('DB')
+        # port= getenv('DBPORT')
         env = getenv('APP_ENV')
+        pg_url = getenv('DATABASE_URL')
         try:
-            self.__engine = create_engine(f'postgresql+psycopg2://{user}:{password}@{host}/{db_name}')
-            # self.__engine = create_engine(pg_url)
+            # self.__engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{db_name}')
+
+            self.__engine = create_engine(pg_url)
+            self.__engine.connect()
             self.reload()
 
             if env == 'test':
