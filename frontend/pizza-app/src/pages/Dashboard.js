@@ -12,7 +12,7 @@ const Dashboard = () => {
         <b className="restaurants-name">{`Restaurant’s name >`}</b>
         <b className="my-pizzas">My Pizzas</b>
       </div>
-      <Button variant="outline-primary" size="lg">
+      <Button variant="outline-dark" size="lg">
         create pizza item
       </Button>
       <div className="rectangle-parent">
@@ -24,10 +24,10 @@ const Dashboard = () => {
         />
         <div className="name">name</div>
         <div className="price">Price</div>
-        <Button className="buttonoutlined" variant="outline-primary" size="lg">
+        <Button className="buttonoutlined" variant="outline-dark" size="lg">
           edit
         </Button>
-        <Button className="buttonoutlined1" variant="outline-primary" size="lg">
+        <Button className="buttonoutlined1" variant="outline-dark" size="lg">
           Delete
         </Button>
       </div>
@@ -40,10 +40,10 @@ const Dashboard = () => {
         />
         <div className="name">name</div>
         <div className="price">Price</div>
-        <Button className="buttonoutlined" variant="outline-primary" size="lg">
+        <Button className="buttonoutlined" variant="outline-dark" size="lg">
           edit
         </Button>
-        <Button className="buttonoutlined1" variant="outline-primary" size="lg">
+        <Button className="buttonoutlined1" variant="outline-dark" size="lg">
           Delete
         </Button>
       </div>
@@ -56,10 +56,10 @@ const Dashboard = () => {
         />
         <div className="name">name</div>
         <div className="price">Price</div>
-        <Button className="buttonoutlined" variant="outline-primary" size="lg">
+        <Button className="buttonoutlined" variant="outline-dark" size="lg">
           edit
         </Button>
-        <Button className="buttonoutlined1" variant="outline-primary" size="lg">
+        <Button className="buttonoutlined1" variant="outline-dark" size="lg">
           Delete
         </Button>
       </div>

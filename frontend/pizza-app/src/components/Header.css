@@ -89,7 +89,7 @@ a {
   display : flex;
   flex-direction: row;
 }
-.loginH, .registerH {
+.loginH, .registerH, .logoutH {
   position: relative;
   display: inline-block;
   width: 1.81rem; /* Assuming width differs for login and register */

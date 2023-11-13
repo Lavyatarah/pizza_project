@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import { useState } from "react";
+import { useState, useHistory } from "react";
 import { postEndpoint } from '../auth';
 import { Button, Form } from 'react-bootstrap';
 import "./Login.css";
@@ -13,6 +13,8 @@ function Login() {
      const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+      const history = useHistory();
+ 
     const handleChange = (e) => {
         setFields({ ...fields, [e.target.name]: e.target.value });
         console.log(fields);
@@ -25,13 +27,16 @@ function Login() {
 
         try {
             const res = await postEndpoint("login", { fields });
-            console.log(res);
+          console.log(res);
+          localStorage.setItem("user", res.restaurantName);
+          localStorage.setItem("token", res.token);
             setFields({email: "", password: ""});
         } catch (err) {
             setError(err.message);
             console.log(err);
         } finally {
-            setLoading(false);
+          setLoading(false);
+          useHistory.push("/dashboard");
         }
     };
   return (
