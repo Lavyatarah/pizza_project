@@ -13,7 +13,6 @@ function Login() {
      const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-      const history = useHistory();
  
     const handleChange = (e) => {
         setFields({ ...fields, [e.target.name]: e.target.value });
@@ -33,10 +32,10 @@ function Login() {
             setFields({email: "", password: ""});
         } catch (err) {
             setError(err.message);
-            console.log(err);
+          console.log(err);
+          return;
         } finally {
           setLoading(false);
-          useHistory.push("/dashboard");
         }
     };
   return (

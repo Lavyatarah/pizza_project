@@ -11,6 +11,7 @@ const MacBookPro161 = () => {
 
     const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+ 
   
            useEffect(() => {
         const timer = setTimeout(() => {
@@ -35,16 +36,20 @@ const MacBookPro161 = () => {
             return;
         }
 
-        try {
-          const res = await postEndpoint("register", { fields });
+      try {
+        const { name, email, phoneNumber, location, password, confirmPassword } = fields;
+        
+          const res = await postEndpoint("register", { name, email, phoneNumber, location, password });
             console.log(res);
             setFields({name: "", email: "", phoneNumber: "", location: "", password: "", confirmPassword: ""});
         } catch (err) {
             setError(err.message);
-            console.log(err);
+        console.log(err);
+        return;
         } finally {
           setLoading(false);
-          setError("");
+        setError("");
+        useHistory.push("/login");
         }
     };
     
