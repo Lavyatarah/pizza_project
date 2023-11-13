@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import "./MacBookPro161.css";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { postEndpoint } from "../auth";
 
 const MacBookPro161 = () => {
@@ -11,6 +12,7 @@ const MacBookPro161 = () => {
 
     const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
  
   
            useEffect(() => {
@@ -41,15 +43,16 @@ const MacBookPro161 = () => {
         
           const res = await postEndpoint("register", { name, email, phoneNumber, location, password });
             console.log(res);
-            setFields({name: "", email: "", phoneNumber: "", location: "", password: "", confirmPassword: ""});
+        navigate("/login");
         } catch (err) {
             setError(err.message);
         console.log(err);
         return;
         } finally {
           setLoading(false);
-        setError("");
-        useHistory.push("/login");
+        if (error === "") {
+          setFields({ name: "", email: "", phoneNumber: "", location: "", password: "", confirmPassword: "" });
+        }
         }
     };
     

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import '../components/Header.css';
 import { useState, useEffect } from "react";
+import { postAuthenticatedEndpoint } from '../auth';
 
 function Header() {
   const [user, setUser] = useState(null);
@@ -9,12 +10,21 @@ function Header() {
     setUser(user);
   }, [user]);
 
+  const handleLogout = () => {
+    const res = postAuthenticatedEndpoint("logout", {});
+    console.log(res);
+    localStorage.removeItem("user");
+    localStorage.removeItem("jwtToken");
+    setUser(null);
+    
+  }
+
   return (
     <header className="headerH" id="headerH">
       <div className="app-nameH">App Name</div>
       <div className="linksH">
         {user ? (
-          <Link className='logoutH' to="/logout">Logout</Link>
+          <Link className='logoutH' to="/" onClick={handleLogout}>Logout</Link>
         ) : (
           <>
             <Link className="loginH" to="/login">Login</Link>

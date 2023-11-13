@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
-import { useState, useHistory } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { postEndpoint } from '../auth';
 import { Button, Form } from 'react-bootstrap';
 import "./Login.css";
@@ -11,7 +12,8 @@ function Login() {
   const [fields, setFields] = useState({email: "", password: ""});
 
      const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
  
     const handleChange = (e) => {
@@ -29,14 +31,20 @@ function Login() {
             const res = await postEndpoint("login", { email, password });
           console.log(res);
           localStorage.setItem("user", res.restaurant.name);
-          localStorage.setItem("jwtToken", res.jwtToken);
-            setFields({email: "", password: ""});
+        localStorage.setItem("jwtToken", res.jwtToken);
+        const isLoggedIn = localStorage.getItem('jwtToken') !== null;
+        if (isLoggedIn) { 
+          navigate("/dashboard");
+        }
         } catch (err) {
             setError(err.message);
           console.log(err);
           return;
         } finally {
-          setLoading(false);
+        setLoading(false);
+        if (error === "") {
+          setFields({ email: "", password: "" });
+        }
         }
     };
   return (
