@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postEndpoint } from '../auth';
+import { postAuthenticatedEndpoint } from '../auth';
 import { Button, Form } from 'react-bootstrap';
 import "./create_pizza.css";
 
@@ -29,10 +29,10 @@ function CreatePizza() {
 
       try {
           const { name, price, image} = fields;
-            const res = await postEndpoint("create_pizza", { name, price, image });
+            const res = await postAuthenticatedEndpoint("create_pizza", { name, price, image });
 
         const isLoggedIn = localStorage.getItem('jwtToken') !== null;
-        if (isLoggedIn && localStorage.getItem("user") !== null) { 
+        if (isLoggedIn && localStorage.getItem("user") !== null && res.error === false) { 
           navigate("/dashboard");
         }
         } catch (err) {
