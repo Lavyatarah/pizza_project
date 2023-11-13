@@ -24,10 +24,11 @@ function Login() {
         e.preventDefault();
         setLoading(true);
 
-        try {
-            const res = await postEndpoint("login", { fields });
+      try {
+          const { email, password} = fields;
+            const res = await postEndpoint("login", { email, password });
           console.log(res);
-          localStorage.setItem("user", res.restaurantName);
+          localStorage.setItem("user", res.restaurant.name);
           localStorage.setItem("jwtToken", res.jwtToken);
             setFields({email: "", password: ""});
         } catch (err) {

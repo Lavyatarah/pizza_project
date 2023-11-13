@@ -51,7 +51,7 @@ def login_restaurant():
     password = data.get('password')
 
     if not email:
-        return jsonify({"message": "email or phone number is required"}), 400
+        return jsonify({"message": "email is required"}), 400
     if not password:
         return jsonify({"message": "password is required"}), 400
     if email:

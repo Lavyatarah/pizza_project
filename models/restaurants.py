@@ -25,6 +25,5 @@ class Restaurants(BaseModel, Base):
             'email': self.email,
             'name': self.name,
             'phone_number': self.phone_number,
-            'location': self.location,
-            'password': self.password
-        }
+            'location': self.location
+ }
