@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import MacBookPro161 from "./pages/MacBookPro161";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import NotFound from "./pages/404";
 
 function App() {
   const action = useNavigationType();
@@ -48,6 +50,9 @@ function App() {
     <Routes>
       <Route path="/" element={<MacBookPro161 />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<MacBookPro161 />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

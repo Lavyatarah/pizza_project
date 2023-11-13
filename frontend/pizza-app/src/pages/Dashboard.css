@@ -1,0 +1,103 @@
+
+.dashboard,
+.my-pizzas,
+.restaurants-name {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 4.38rem;
+}
+.dashboard {
+  position: relative;
+  font-size: 3rem;
+  width: 108rem;
+  flex-shrink: 0;
+}
+.my-pizzas,
+.restaurants-name {
+  position: absolute;
+  top: 0;
+}
+.restaurants-name {
+  left: 0;
+  width: 24.19rem;
+}
+.my-pizzas {
+  left: 23.75rem;
+  width: 12.06rem;
+}
+.frame-child,
+.restaurants-name-parent {
+  position: relative;
+  width: 35.81rem;
+  height: 4.38rem;
+}
+.frame-child {
+  background-color: var(--color-whitesmoke);
+  width: 70.5rem;
+  height: 13.06rem;
+  z-index: 0;
+}
+.frame-item,
+.name,
+.price {
+  position: absolute;
+  margin: 0 !important;
+}
+.frame-item {
+  top: 0.19rem;
+  left: 0.19rem;
+  width: 18.38rem;
+  height: 12.88rem;
+  object-fit: cover;
+  z-index: 1;
+}
+.name,
+.price {
+  top: 0.81rem;
+  left: 25.81rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 10.06rem;
+  height: 3.25rem;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.price {
+  top: 7.69rem;
+  z-index: 3;
+}
+.buttonoutlined,
+.buttonoutlined1 {
+  margin: 0 !important;
+  position: absolute;
+  top: 1.38rem;
+  left: 56rem;
+  z-index: 4;
+}
+.buttonoutlined1 {
+  top: 7.88rem;
+  z-index: 5;
+}
+.Dashboard,
+.rectangle-parent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.rectangle-parent {
+  gap: var(--gap-3xs);
+}
+.Dashboard {
+  background-color: var(--color-white);
+  width: 100%;
+  overflow: hidden;
+  gap: 1.88rem;
+  text-align: center;
+  font-size: var(--font-size-17xl);
+  color: var(--color-black);
+  font-family: var(--font-istok-web);
+}
