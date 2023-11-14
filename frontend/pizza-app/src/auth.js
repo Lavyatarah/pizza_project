@@ -14,6 +14,7 @@ export const getAuthenticatedEndpoint = async (endpoint) => {
         const response = await axios.get(`${API_URL}/${endpoint}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
+
             },
         }, config);
         return response.data;
@@ -29,7 +30,7 @@ export const postAuthenticatedEndpoint = async (endpoint, data) => {
         const response = await axios.post(`${API_URL}/${endpoint}`, JSON.stringify(data), {
             headers: {
                 Authorization: `Bearer ${token}`,
-
+                'Content-Type': 'application/json'
             },
         }, config);
         return response.data;
@@ -62,6 +63,7 @@ export const deleteAuthenticatedEndpoint = async (endpoint) => {
         const response = await axios.delete(`${API_URL}/${endpoint}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
 
             },
         }, config);
