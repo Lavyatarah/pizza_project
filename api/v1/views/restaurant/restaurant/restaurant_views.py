@@ -65,8 +65,9 @@ def login_restaurant():
             response = jsonify({"message": "Logged in successfully!", 'status': 200, 'jwtToken': access_token, 'restaurant': restaurant.to_dict()})
             return response
 
-@jwt_required
+
 @app_views.route('/logout', methods=['POST'])
+@jwt_required()
 def logout_restaurant():
     """
     Logout a restaurant
@@ -86,8 +87,9 @@ def logout_restaurant():
         return response
 
 
-@jwt_required
+
 @app_views.route('/create_pizza', methods=['POST'])
+@jwt_required()
 def create_pizza():
     """
     Create a new pizza
@@ -96,20 +98,21 @@ def create_pizza():
     name = data.get('name')
     price = data.get('price')
     image = data.get('image')
+    restaurant_id = data.get('restaurant_id')
 
     if not name:
         return jsonify({"message": "name is required"}), 400
     if not price:
         return jsonify({"message": "price is required"}), 400
 
-    restaurant = restaurant_authenticator.get_authenticated_restaurant()
-    if not restaurant:
-        return jsonify({"message": "Not logged in!", "restaurant": restaurant}), 400
 
-    pizzas = GetRelationships.get_pizzas_from_restaurant(restaurant.id)
+    if not restaurant:
+        return jsonify({"message": "Not logged in!"}), 400
+
+    pizzas = GetRelationships.get_pizza_from_restaurant(restaurant_id)
     for pizza in pizzas:
         if pizza.name == name:
-            return jsonify({"message": "pizza already exists"}), 409
+            return jsonify({"message": "pizza item already exists"}), 409
 
     pizza = Pizza(name=name, price=price, image=image, restaurant_id=restaurant.id)
     pizza.save()
@@ -117,8 +120,9 @@ def create_pizza():
     return jsonify({"message": "Pizza created successfully!"}), 201
 
 
-@jwt_required
+
 @app_views.route('/pizzas', methods=['GET'])
+@jwt_required()
 def get_all_pizzas():
     """
     Get all pizzas
@@ -127,7 +131,7 @@ def get_all_pizzas():
     if not restaurant:
         return jsonify({"message": "Not logged in!"}), 400
 
-    pizzas = GetRelationships.get_pizzas_from_restaurant(restaurant.id)
+    pizzas = GetRelationships.get_pizza_from_restaurant(restaurant)
     if not pizzas:
         return jsonify({"message": "No pizzas found"}), 404
 

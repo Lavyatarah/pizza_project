@@ -20,9 +20,7 @@ class Authentication:
             return False
         return True
     def get_authenticated_restaurant(self):
-        if self.validate_jwt():
-            return get_jwt_identity()
-        return None
+        return get_jwt_identity()
 
     def set_cookie(self, response, access_token):
         set_access_cookies(response, access_token)

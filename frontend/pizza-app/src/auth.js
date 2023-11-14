@@ -27,6 +27,9 @@ export const getAuthenticatedEndpoint = async (endpoint) => {
 export const postAuthenticatedEndpoint = async (endpoint, data) => {
     try {
         const token = localStorage.getItem('jwtToken');
+        const restaurant = localStorage.getItem('user');
+        const restaurant_id = JSON.parse(restaurant).id;
+        data.restaurant_id = restaurant_id;
         const response = await axios.post(`${API_URL}/${endpoint}`, JSON.stringify(data), {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -95,7 +98,6 @@ export const postEndpoint = async (endpoint, data) => {
         'Content-Type': 'application/json',
     },
         }, config);
-        localStorage.setItem('jwtToken', response.jwtToken);
         
         return response.data;
     } catch (error) {

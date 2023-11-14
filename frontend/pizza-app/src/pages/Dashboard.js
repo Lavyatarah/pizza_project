@@ -5,7 +5,8 @@ import Header from "../components/Header";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 const Dashboard = () => {
-  const restaurantName = localStorage.getItem("user");
+  const restaurant = localStorage.getItem("user");
+  const restaurantName = JSON.parse(restaurant).name;
   return (
     <ProtectedRoute>
     <div className="Dashboard">

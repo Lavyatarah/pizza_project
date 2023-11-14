@@ -37,8 +37,8 @@ function Login() {
       try {
           const { email, password} = fields;
             const res = await postEndpoint("login", { email, password });
-          console.log(res);
-          localStorage.setItem("user", res.restaurant.name);
+          const res_Json = JSON.stringify(res.restaurant);
+        localStorage.setItem("user", res_Json);
         localStorage.setItem("jwtToken", res.jwtToken);
         const isLoggedIn = localStorage.getItem('jwtToken') !== null;
         if (isLoggedIn) { 
