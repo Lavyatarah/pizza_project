@@ -2,10 +2,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import "./Dashboard.css";
 import Header from "../components/Header";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 const Dashboard = () => {
   const restaurantName = localStorage.getItem("user");
   return (
+    <ProtectedRoute>
     <div className="Dashboard">
       <Header />
       <div className="dashboard">Dashboard</div>
@@ -64,7 +66,8 @@ const Dashboard = () => {
           Delete
         </Button>
       </div>
-    </div>
+      </div>
+    </ProtectedRoute>
   );
 };
 

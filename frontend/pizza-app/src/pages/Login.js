@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { postEndpoint } from '../auth';
 import { Button, Form } from 'react-bootstrap';
@@ -14,6 +14,14 @@ function Login() {
      const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+    
+  useEffect(() => {
+        const timer = setTimeout(() => {
+          setError("");
+        }, 3000);
+        return () => clearTimeout(timer);
+      }, [error]);
 
  
     const handleChange = (e) => {
@@ -51,6 +59,7 @@ function Login() {
     <div className="login">
         <Header />
       <div className="login-restaurants">Login to Restaurant</div>
+      {error && <div className="alert alert-danger danger-small">{error}</div>}
       <Form  className="inputstandard" onSubmit={handleSubmit}>
         <Form.Control type="email" placeholder="email" name="email" className="field" required  onChange={handleChange} />
         <Form.Control type="password" placeholder="password" name="password"  className="field" required onChange={handleChange} />

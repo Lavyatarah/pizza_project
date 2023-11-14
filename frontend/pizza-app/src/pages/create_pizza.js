@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { postAuthenticatedEndpoint } from '../auth';
 import { Button, Form } from 'react-bootstrap';
@@ -20,7 +20,15 @@ function CreatePizza() {
     const handleChange = (e) => {
         setFields({ ...fields, [e.target.name]: e.target.value });
         console.log(fields);
-  };
+    };
+    
+      
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setError("");
+        }, 3000);
+        return () => clearTimeout(timer);
+      }, [error]);
     
     const handleSubmit = async (e) => {
 
@@ -49,7 +57,8 @@ function CreatePizza() {
   return (
     <div className="create-pizza">
         <Header />
-      <div className="create-for-restaurants">Add pizza item</div>
+          <div className="create-for-restaurants">Add pizza item</div>
+          {error && <div className="alert alert-danger danger-small">{error}</div>}
       <Form  className="input" onSubmit={handleSubmit}>
         <Form.Control type="text" placeholder="Pizza's name" name="name" className="fields" required  onChange={handleChange} />
               <Form.Control type="number" placeholder="price" name="price" className="fields" required onChange={handleChange} />
