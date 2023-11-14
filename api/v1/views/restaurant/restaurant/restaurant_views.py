@@ -1,7 +1,6 @@
-from flask import jsonify, request, url_for, redirect
+from flask import jsonify, request
 from auth.auth import Authentication
 from auth.restaurant_auth import RestaurantAuth
-from datetime import datetime
 from api.v1.views.restaurant.restaurant import app_views
 from flask_jwt_extended import jwt_required
 from utils.GetRelationships import GetRelationships
@@ -41,7 +40,7 @@ def register_restaurant():
 
 
 
-@app_views.route('/login', methods=['POST'])
+@app_views.route('/login', methods=['POST']) # type: ignore
 def login_restaurant():
     """
     Login a restaurant
@@ -82,7 +81,7 @@ def logout_restaurant():
     if not restaurant:
         return jsonify({"message": "Not logged in!"}), 400
     else:
-        restaurant_authenticator.unset_cookies(response, access_token)
+        restaurant_authenticator.unset_cookies(response, access_token)  #type: ignore
         response = jsonify({"message": "Logged out successfully!"})
         return response
 
@@ -106,15 +105,15 @@ def create_pizza():
         return jsonify({"message": "price is required"}), 400
 
 
-    if not restaurant:
+    if not restaurant_id:
         return jsonify({"message": "Not logged in!"}), 400
 
-    pizzas = GetRelationships.get_pizza_from_restaurant(restaurant_id)
+    pizzas = GetRelationships.get_pizza_from_restaurant(restaurant_id) #type: ignore
     for pizza in pizzas:
         if pizza.name == name:
             return jsonify({"message": "pizza item already exists"}), 409
 
-    pizza = Pizza(name=name, price=price, image=image, restaurant_id=restaurant.id)
+    pizza = Pizzas(name=name, price=price, image=image, restaurant_id=restaurant_id)
     pizza.save()
 
     return jsonify({"message": "Pizza created successfully!"}), 201
@@ -127,11 +126,12 @@ def get_all_pizzas():
     """
     Get all pizzas
     """
-    restaurant = restaurant_authenticator.get_authenticated_restaurant()
-    if not restaurant:
+    data = request.get_json()
+    restaurant_id = data.get('restaurant_id')
+    if not restaurant_id:
         return jsonify({"message": "Not logged in!"}), 400
 
-    pizzas = GetRelationships.get_pizza_from_restaurant(restaurant)
+    pizzas = GetRelationships.get_pizza_from_restaurant(restaurant_id) #type: ignore
     if not pizzas:
         return jsonify({"message": "No pizzas found"}), 404
 

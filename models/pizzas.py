@@ -1,5 +1,5 @@
 from models.basemodel import BaseModel, Base
-from sqlalchemy import Column, String, DateTime, Boolean, ForeignKey
+from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 class Pizzas(BaseModel, Base):

@@ -1,4 +1,3 @@
-from models.restaurants import Restaurants
 from models.pizzas import Pizzas
 from db.storage import DB
 
